@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',  # Swagger UI generator
     'products',
 ]
 
@@ -129,3 +130,7 @@ STATIC_URL = '/static/'
 
 # CORS allow all origins
 CORS_ORIGIN_ALLOW_ALL = True
+
+SWAGGER_SETTINGS = {
+    'JSON_EDITOR': True,
+}
