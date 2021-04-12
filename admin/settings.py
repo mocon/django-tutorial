@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import environ
+
+env = environ.Env(
+    # Set casting, default values
+    SECRET_KEY=(str, ''),
+    MYSQL_NAME=(str, ''),
+    MYSQL_USER=(str, ''),
+    MYSQL_PASSWORD=(str, ''),
+    MYSQL_HOST=(str, ''),
+    MYSQL_PORT=(str, ''),
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'z6k)ghw-9q6@qtf&$3soy2ou65dl3xl5ohg@1bri1+m%$-=hfd'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,11 +92,11 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'admin',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db',
-        'PORT': '3306',
+        'NAME': env('MYSQL_NAME'),
+        'USER': env('MYSQL_USER'),
+        'PASSWORD': env('MYSQL_PASSWORD'),
+        'HOST': env('MYSQL_HOST'),
+        'PORT': env('MYSQL_PORT'),
     }
 }
 
